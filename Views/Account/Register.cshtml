@@ -1,0 +1,55 @@
+﻿@model IdentityServer.Models.AccountViewModels.RegisterViewModel
+@{ ViewData["Title"] = "Register"; }
+
+@*<h2>@ViewData["Title"]</h2>*@
+
+<div class="box-background-image">
+    <!-- <img style="width: 100%; height: 100%;" src="/images/background.png" /> -->
+    <div class="bground"></div>
+    <div class="box-logo">
+        <img src="/images/logo.png" />
+        <p class="text-greeting">Start learning new things daily!</p>
+    </div>
+</div>
+<div class="box-main">
+    <div class="box-action">
+        <a class="box-item-action" id="login" href="/Account/Login">Đăng Nhập</a>
+        <a class="box-item-action is-active" id="register" href="/Account/Register">Đăng Ký</a>
+    </div>
+    <form class="box-form" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+        @*<div asp-validation-summary="All" class="text-danger"></div>*@
+        <div class="form-group">
+            @*<label asp-for="Email"></label>*@
+            <input asp-for="Email" class="form-control" autofocus placeholder="Nhập Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            @*<label asp-for="Username"></label>*@
+            <input asp-for="Username" class="form-control" placeholder="Nhập Username" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            @*<label asp-for="Password"></label>*@
+            <input asp-for="Password" class="form-control" placeholder="Nhập Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            @*<label asp-for="ConfirmPassword"></label>*@
+            <input asp-for="ConfirmPassword" class="form-control" placeholder="Nhập ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <div class="myTest custom-control custom-checkbox">
+            <input class="custom-control-input" asp-for="AcceptsTerms">
+            <label class="custom-control-label" asp-for="AcceptsTerms">
+                Tôi đồng ý với <a class="text-rules" href="#">điều khoản này.</a>
+            </label><br />
+            <span asp-validation-for="AcceptsTerms" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn box-button"><p class="text-submit">Đăng Ký Với V-Talent</p></button>
+    </form>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="/js/register.js"></script>
+}

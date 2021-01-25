@@ -1,0 +1,79 @@
+﻿@model LoginViewModel
+
+    @*<div class="main">*@
+        
+        <div class="box-background-image">
+            <!-- <img style="width: 100%; height: 100%;" src="/images/background.png" /> -->
+            <div class="bground"></div>
+            <div class="box-logo">
+                <img src="/images/logo.png" />
+                <p class="text-greeting">Start learning new things daily!</p>
+            </div>
+        </div>
+        <div class="box-main">
+            <div class="box-action">
+                <a class="box-item-action is-active" id="login" href="#">Đăng Nhập</a>
+                <a class="box-item-action" id="register" href="/Account/Register">Đăng Ký</a>
+            </div>
+            <partial name="_ValidationSummary" />
+            @if (Model.EnableLocalLogin)
+            {
+                <form class="box-form" asp-route="Login">
+                    <input type="hidden" asp-for="ReturnUrl" />
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Username" asp-for="Username" autofocus>
+                        <!-- display validation -->
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                        @*@Html.ValidationMessage("Username")*@
+                    </div>
+                    <div class="form-group form-password">
+                        <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
+                        <!-- display validation -->
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        @*@Html.ValidationMessage("Password")*@
+                    </div>
+                    <div class="myTest custom-control custom-checkbox">
+                        <input class="custom-control-input" asp-for="RememberLogin">
+                        <label class="custom-control-label" asp-for="RememberLogin">
+                            Remember My Login
+                        </label>
+                    </div>
+                    <button class="btn box-button" name="button" value="login"><p class="text-submit">Đăng Nhập Với V-Talent</p></button>
+                    @*<button class="btn btn-primary" name="button" value="login">Login</button>
+                <button class="btn btn-secondary" name="button" value="cancel">Cancel</button>
+                <button action="/Account/ForgotPassword" class="btn btn-secondary" name="button" value="forgotpassword">Forgot Password</button>
+                <button class="btn btn-secondary" name="button" value="register">Register</button>*@
+                    <p>The default users are alice/bob, password: Pass123$</p>
+                </form>
+                <a href="/Account/ForgotPassword" class="text-forget">Bạn quên mật khẩu?</a>
+            }
+            <div class="box-border">
+                <div class="box-border-item"></div>
+                <p class="text-border">hoặc</p>
+                <div class="box-border-item"></div>
+            </div>
+            @if (Model.VisibleExternalProviders.Any())
+            {
+                <div class="box-login-other-all">
+                    @foreach (var provider in Model.VisibleExternalProviders)
+                    {
+                        <a asp-controller="External"
+                           asp-action="Challenge"
+                           asp-route-scheme="@provider.AuthenticationScheme"
+                           asp-route-returnUrl="@Model.ReturnUrl">
+                            @*<img src="/images/google.png" />*@
+                            <p class="text-login-other"> @provider.DisplayName</p>
+                        </a>
+                    }
+                </div>
+            }
+
+            @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
+            {
+                <div class="alert alert-warning">
+                    <strong>Invalid login request</strong>
+                    There are no login schemes configured for this request.
+                </div>
+            }
+        </div>
+    @*</div>*@

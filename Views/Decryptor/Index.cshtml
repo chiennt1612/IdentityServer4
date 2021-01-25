@@ -1,0 +1,60 @@
+@model IdentityServer.Models.DecryptorDTO
+
+<div class="page-consent">
+    <form asp-action="Index">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="glyphicon glyphicon-tasks"></span>
+                            Input
+                        </div>
+                        <div class="card-body">
+                            <input class="form-control" required placeholder="Input value to action" asp-for="InputValue" autofocus>
+                            <span asp-validation-for="InputValue" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="glyphicon glyphicon-tasks"></span>
+                            Type
+                        </div>
+                        <div class="card-body">
+                            @if (Model.Type == "Secret")
+                            {
+                            <label for="Type1">Sha256 Secret<input class="form-control" type="radio" placeholder="Type" name="Type" id="Type1" value="Secret" checked></label>
+                            <label for="Type2">
+                                Rijndael<input class="form-control" type="radio" placeholder="Type" name="Type" id="Type2" value="Rijndael">
+                            </label> }
+                                else
+                                {
+                        <label for="Type1">
+                            Sha256 Secret<input class="form-control" type="radio" placeholder="Type" name="Type" id="Type1" value="Secret">
+                        </label>
+                        <label for="Type2">Rijndael<input class="form-control" type="radio" placeholder="Type" name="Type" id="Type2" value="Rijndael" checked></label>}
+
+
+</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="glyphicon glyphicon-tasks"></span>
+                            Output
+                        </div>
+                        <div class="card-body">
+                            <input class="form-control" readonly placeholder="Return value" asp-for="OutputValue" value="@Model.OutputValue">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <button name="button" action="/Decryptor/Decrypt" value="Decrypt" class="btn btn-primary">Decrypt</button>
+                <button name="button" action="/Decryptor/Encrypt" value="Encrypt" class="btn btn-primary">Encrypt</button>
+            </div>
+        </div>
+    </form>
+</div>

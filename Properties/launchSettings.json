@@ -1,0 +1,25 @@
+//{
+//  "profiles": {
+//    "SelfHost": {
+//      "commandName": "Project",
+//      "launchBrowser": true,
+//      "environmentVariables": {
+//        "ASPNETCORE_ENVIRONMENT": "Production"
+//      },
+//      "applicationUrl": "https://vtalent-id.schoolbus.cf:8443/"
+//    }
+//  }
+//}
+{
+  "profiles": {
+    "SelfHost": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:5004/Account/Login",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5004"
+    }
+  }
+}
